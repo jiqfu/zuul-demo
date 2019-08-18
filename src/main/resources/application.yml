@@ -1,0 +1,21 @@
+eureka:
+  client:
+    serviceUrl:
+      # 注册中心
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8769
+spring:
+  application:
+    name: zuul-demo
+zuul:
+  routes:
+    # 配置路由
+    ec:
+      #把请求地址http://localhost:8769\ec\***的路由到eureka-client服务
+      path: /ec/**
+      serviceId: eureka-client
+    feign:
+      #把请求地址http://localhost:8769\feign\***的路由到feign-demo服务
+      path: /feign/**
+      serviceId: feign-demo
